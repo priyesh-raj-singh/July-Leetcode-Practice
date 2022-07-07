@@ -2,17 +2,18 @@
 class Solution {
 public:
     ListNode* reverse(ListNode* head){
-         
-         ListNode *p, *q;
-    p=head, q=NULL;
-    
-    while(p!=NULL){
-        ListNode *on=p->next;
-        p->next=q;
-        q=p;
-        p=on;
-    }
-    return q;
+       if(head ==NULL || head->next==NULL)
+            return head;
+        ListNode*curr = head;
+        ListNode* prev = NULL;
+        ListNode* temp = curr->next;
+        
+        while(curr!=NULL){
+            curr->next = prev;  prev = curr;  curr = temp;  if(temp!=NULL) temp = temp->next;
+            
+            
+        }
+        return prev;
     }
     
     ListNode *middle(ListNode* head){
