@@ -58,14 +58,15 @@ class Solution
         int count = 0 ;
         node *curr = head;
         node *prev = NULL;
-        node *n =NULL;
+        node *n = NULL;
         while(curr!=NULL and count<k){
-            n = curr->next;
+        n = curr->next;
+            
              
             curr->next = prev;
             prev = curr;
             curr = n;
-           
+            
             count++;
         }
         if(n!=NULL){
