@@ -6,18 +6,34 @@ public:
             mp[s[i]]++;
         
         string ans;
-        vector<pair<int , char>> v;
+        priority_queue<pair<int , char>> pq;
         for(auto it: mp){
-            v.push_back({it.second , it.first});
+            pq.push({it.second , it.first});
         }
-        sort(v.begin() , v.end());
+        
+        while(!pq.empty()){
+            ans+= string(pq.top().first , pq.top().second);
+            pq.pop();
+        }
+        
+        
+        
+        
+        
+        
+        
+//         vector<pair<int , char>> v;
+//         for(auto it: mp){
+//             v.push_back({it.second , it.first});
+//         }
+//         sort(v.begin() , v.end());
          
-        for(auto i: v){
-            while(i.first--){
-                ans+=i.second;
-            }
-        }
-        reverse(ans.begin() , ans.end());
+//         for(auto i: v){
+//             while(i.first--){
+//                 ans+=i.second;
+//             }
+//         }
+//         reverse(ans.begin() , ans.end());
         return ans;
         
     }
