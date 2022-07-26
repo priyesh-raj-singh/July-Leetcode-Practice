@@ -1,27 +1,21 @@
 class Solution {
 public:
-    int longestCommonSubsequence(string &text1, string &text2,int m,int n,int memo[][1001]) {
-        if(m==0 || n==0){
+    int dp[1001][1001];
+    int lcs(string& s1 , string& s2 , int n , int m){
+        if(n==0 or m==0)
             return 0;
-        }
-        if(memo[m][n]!=-1){
-            return memo[m][n];
-        }
-        if(text1[m-1]==text2[n-1]){
-            return memo[m][n]= 1+longestCommonSubsequence(text1,text2,m-1,n-1,memo);
-        }else{
-            return memo[m][n]= max(longestCommonSubsequence(text1,text2,m-1,n,memo),longestCommonSubsequence(text1,text2,m,n-1,memo));
-        }
+        if(dp[n][m]!=-1)
+            return dp[n][m];
+        
+        if(s1[n-1]==s2[m-1])
+            return dp[n][m] = 1+ lcs(s1 , s2 , n-1 , m-1);
+        else
+            return dp[n][m] = max(lcs(s1 , s2 , n-1 , m) , lcs(s1 , s2 , n , m-1));
     }
-    
-    int longestCommonSubsequence(string text1, string text2) {
-        int m=text1.size(),n=text2.size();
-        int memo[1001][1001];
-        for(int i=0;i<1001;i++){
-            for(int j=0;j<1001;j++){
-                memo[i][j]=-1;
-            }
-        }
-        return longestCommonSubsequence(text1,text2,m,n,memo);
+    int longestCommonSubsequence(string s1, string s2) {
+        memset(dp , -1 , sizeof(dp));
+        return lcs(s1 , s2 , s1.size() , s2.size());
+        
+        
     }
 };
